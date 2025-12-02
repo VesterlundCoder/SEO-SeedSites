@@ -196,4 +196,110 @@ Then tweak:
 	•	TOTAL_NODES, AVG_EDGES, and NUM_SEEDS
 inside webgraph_simulation.py to explore different country sizes and seed strategies.
 
+5. Use Cases for SEO, Crawling and Indexing Strategy
 
+This repository is designed for both researchers and SEO professionals who want to:
+	•	Quantify how many seed sites are needed for a national market.
+	•	Compare Swedish (.se) and UK (.co.uk) web graphs.
+	•	Understand how distance from seed sites affects:
+	•	Time to First Index (TTFI),
+	•	Visibility of SMEs and long-tail domains,
+	•	Fairness and coverage of local businesses.
+	•	Explore trade-offs between:
+	•	Adding more seeds vs
+	•	Allowing more hops in the crawler frontier.
+
+Typical applications:
+	•	National SEO research and policy discussions (e.g. coverage of SMEs).
+	•	Search engine design for niche or country-specific engines.
+	•	Educational content for SEO trainings, workshops, and webinars.
+	•	Supporting arguments in research papers on TrustRank, seed sites, and web graph structure.
+
+⸻
+
+6. Related Seed Site & TrustRank Research by IncRev
+
+This repository implements and extends the mathematical models used in a series of research papers authored by David Vesterlund (IncRev) on seed sites, TrustRank, and web crawling.
+
+6.1. IncRev SEO Research (IncRev website)
+	•	IncRev SEO Research hub:
+👉 https://increv.co/academy-research/￼
+
+This page contains practitioner-friendly summaries and full research articles, including:
+	•	TrustRank and Seed Sites: Modeling Backlink Value for Web Trust Propagation in a Google-Like Ranking System
+	•	How Close Are You to Google’s Seed Sites? The Hidden Factor Behind Fast Indexing
+	•	Best Backlinks for SEO – How Link Value Travels Across the Web
+
+Many of these articles link directly to the full mathematical papers hosted on Zenodo.
+
+6.2. IncRev SEO Research Community on Zenodo
+
+All formal research papers and datasets are archived in the INCREV® SEO Research Community on Zenodo:
+	•	👉 https://zenodo.org/communities/increvseo/￼
+
+Here you will find, among others:
+	•	“Link Building in Sweden – DOI 10.5281/zenodo…”
+(Modeling the Swedish link graph and seed sites.)
+	•	“Google SEO by IncRev: Why Google Needs Thousands of Seed Sites for Efficient Web Indexing”
+	•	“A Negative Proof for the Existence of Seed Sites for Google’s Ranking System”
+
+These works provide the empirical and mathematical basis for the code in this repository.
+
+6.3. Academia.edu profile (full list of papers)
+
+For a complete list of papers, preprints and related research:
+	•	👉 David Vesterlund (Independent Researcher) on Academia.edu
+https://independent.academia.edu/DavidVesterlund￼
+
+This profile includes:
+	•	Seed site and TrustRank papers.
+	•	Work on AI search visibility, LLM manipulation and SEO, and
+	•	Applied mathematics projects (e.g. prime number research).
+
+⸻
+
+7. Citing This Work
+
+If you use this code or model in an academic paper, blog post, or product, please consider citing:
+	•	The relevant Zenodo record(s) for the seed-site paper(s).
+	•	The IncRev SEO Research community on Zenodo:
+https://zenodo.org/communities/increvseo/￼
+	•	The IncRev SEO Research hub:
+https://increv.co/academy-research/￼
+
+Example (generic):
+
+Vesterlund, D. (2025). Mathematical Models of Seed Sites, Web Crawling and Indexing Latency for UK and Swedish Domains. INCREV® SEO Research Community, Zenodo.
+
+(Replace with the actual title and DOI from the specific record you use.)
+
+⸻
+
+8. License and Contributions
+
+Specify your license here, for example:
+	•	Code: MIT License
+	•	Text / figures: CC BY-SA 4.0
+
+Contributions are welcome if they:
+	•	Add new country-level scenarios (e.g. .de, .nl, .fr).
+	•	Improve parameter estimation from real link graphs (Common Crawl, JISC UK Web Dataset, etc.).
+	•	Extend the TTFI model with empirical crawl data.
+
+Please open an issue or pull request if you:
+	•	Spot a bug in the math or implementation.
+	•	Want to add a new figure for the paper.
+	•	Have suggestions for better parameter ranges (D, r, s, θ).
+
+⸻
+
+9. Contact
+
+For questions about the models or collaboration requests:
+	•	Author: David Vesterlund
+	•	Company: INCREV®
+	•	SEO Research Hub: https://increv.co/academy-research/￼
+	•	Research Archive: https://zenodo.org/communities/increvseo/￼
+	•	Academia Profile: https://independent.academia.edu/DavidVesterlund￼
+
+If you build something cool on top of this repository – especially new analyses of seed sites, web crawling, and indexing latency for other countries – please reach out.
