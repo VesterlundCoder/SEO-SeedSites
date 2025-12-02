@@ -134,3 +134,66 @@ This produces four PNG files, for example:
 	•	se_se_multi_hop_ttfi.png
 
 These can be referenced as “multi-hop perspective” figures in the paper or in blog posts about extra hops vs extra seeds.
+
+3.4. webgraph_simulation.py – interactive toy model for SEO and crawling
+
+Purpose:
+A self-contained Python script that:
+	•	Lets you configure:
+	•	TOTAL_NODES – number of websites in the graph
+(e.g. SE ≈ 1.5M, UK ≈ 8–10M; the script uses smaller numbers for demos).
+	•	AVG_EDGES – average outbound links per website
+(typically 20–30, but configurable).
+	•	NUM_SEEDS – number of seed sites
+(e.g. SE 500–2,000 and UK 5,000–50,000).
+	•	Computes:
+	•	Estimated coverage of the web graph (%) under 2- or 3-hop models.
+	•	Estimated TTFI as a function of seed count.
+	•	Visualises:
+	•	A small toy web graph (100 nodes) with covered vs uncovered nodes.
+	•	A TTFI vs number of seed sites curve.
+
+Key functions:
+	•	estimate_coverage(n_nodes, avg_deg, num_seeds, hops=2, r=0.6, s=0.45, theta=0.3)
+	•	estimate_ttfi(avg_deg, num_seeds, graph_size, base_hop_latency=3.0)
+	•	draw_mock_coverage(coverage, title_prefix="Graph Coverage")
+	•	plot_coverage_vs_seeds(...)
+	•	plot_ttfi_vs_seeds(...)
+
+This script is ideal as a teaching tool for:
+	•	SEO practitioners who want to understand why “Google needs thousands of seed sites”.
+	•	Researchers who want a quick, visual explanation of coverage vs seeds and TTFI vs seeds.
+
+⸻
+
+4. Installation and Requirements
+
+4.1. Python version
+	•	Python 3.9+ is recommended.
+
+4.2. Install dependencies
+
+Create a virtual environment (optional but recommended), then:
+pip install -r requirements.txt
+
+A typical requirements.txt will include:
+numpy
+pandas
+matplotlib
+networkx
+4.3. Running the code
+
+Generate UK & SE 5/10-hop tables:
+python -m src.multi_hop_seed_model
+Recreate Figures 1–8:
+python -m src.figures_seed_uk_se
+Plot multi-hop coverage & TTFI (5 vs 10 hops):
+python -m src.multi_hop_plots
+Run the toy web graph simulation:
+python -m src.webgraph_simulation
+
+Then tweak:
+	•	TOTAL_NODES, AVG_EDGES, and NUM_SEEDS
+inside webgraph_simulation.py to explore different country sizes and seed strategies.
+
+
