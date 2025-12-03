@@ -1,0 +1,77 @@
+Mathematica code
+
+All of this is suitable for a separate repo folder, e.g. /notebooks/ or /wolfram/. It’s mostly for:
+	•	Analytical exploration (seed optimisation, Gini, Lorenz curves)
+	•	Simulated BFS crawls
+	•	Synthetic graph generation
+	•	Seed classifier prototype
+
+2.1 seed_optimization.wl or SeedOptimization.nb
+
+Purpose: Mathematical seed-sizing and marginal coverage analysis.
+
+Key functions:
+	•	computeSeeds[d_, r_, θ_, c_]
+	•	Closed-form seed sizing:
+n \ge \left\lceil \frac{C (1 - \theta)}{1 + D + rD^2} \right\rceil
+	•	Implementation: Ceiling[c*(1 - θ)/(1 + d + r*d^2)]
+	•	marginalCoverage[n1_, n2_, d_, r_, θ_]
+	•	Computes additional discovered domains when increasing seeds from n1 to n2.
+
+⸻
+
+2.2 degree_skew_analysis.wl
+
+Purpose: Explore skew / inequality of out-degree (Gini + Lorenz).
+
+Key functions:
+	•	giniCoefficient[list_]
+	•	Computes Gini coefficient for a list of degrees.
+	•	lorenzPlot[data_]
+	•	Plots Lorenz curve (cumulative share of seeds vs cumulative share of links / coverage).
+
+✔ Use with real out-degree data from CC or JISC to support the “hubs dominate” argument.
+
+⸻
+
+2.3 bfs_crawl_simulation.wl
+
+Purpose: Simulated seeded BFS crawl on a domain-level graph.
+
+Key functions:
+	•	simulateCrawlFrontier[graph_, seeds_, maxHops_: 3]
+	•	graph is an association: "domain.co.uk" -> {neighbors}
+	•	BFS from seeds up to maxHops, returns visited with hop depths.
+	•	crawlStatsTable[graph_, allSeeds_, hops_: 3]
+	•	For different seed counts (e.g. 5, 10, 15, …), runs simulateCrawlFrontier and records discovered nodes.
+	•	plotCoverageCurve[results_]
+	•	Plots “domains discovered” vs “seed count” for the simulated crawl.
+
+⸻
+
+2.4 synthetic_graph_and_classifier.wl
+
+Purpose: Synthetic .co.uk-style graph + ML classifier for “good seeds”.
+
+Key building blocks:
+	•	Graph generation
+	•	generatePLDDomains[n_]
+	•	Creates synthetic domain names: site1.co.uk, ….
+	•	generateOutDegrees[n_, min_, max_, alpha_: 1.3]
+	•	Generates Zipf-distributed out-degrees.
+	•	generateSyntheticGraph[n_: 1000, minOut_: 5, maxOut_: 50]
+	•	Uses the above to produce graph = <|"site1.co.uk" -> {...}, ...|>.
+	•	Feature extraction
+	•	computeDomainFeatures[graph_]
+	•	For each domain:
+	•	outDegree
+	•	inDegree
+	•	simple PageRank proxy (normalised in-degree)
+	•	entropy of outgoing targets (link diversity).
+	•	Labeling “high value seeds”
+	•	labelHighValueSeeds[graph_, features_, threshold_: 100]
+	•	For each domain, runs a 2-hop crawl from that domain, labels as True if it reaches ≥ threshold unique nodes.
+	•	Adds "isHighValueSeed" to each feature record.
+	•	Classifier
+	•	Classify[ ... ] (RandomForest) over features → isHighValueSeed.
+	•	ClassifierInformation[classifier, "FeatureImportance"] to see which features matter.
