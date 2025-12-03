@@ -1,0 +1,39 @@
+Installation and Requirements
+
+4.1. Python version
+	•	Python 3.9+ is recommended.
+
+4.2. Install dependencies
+
+Create a virtual environment (optional but recommended), then:
+
+pip install -r requirements.txt
+
+A typical requirements.txt will include:
+
+numpy
+pandas
+matplotlib
+networkx
+
+4.3. Running the code
+
+Generate UK & SE 5/10-hop tables:
+
+python -m src.multi_hop_seed_model
+
+Recreate Figures 1–8:
+
+python -m src.figures_seed_uk_se
+
+Plot multi-hop coverage & TTFI (5 vs 10 hops):
+
+python -m src.multi_hop_plots
+
+Run the toy web graph simulation:
+
+python -m src.webgraph_simulation
+
+Then tweak:
+	•	TOTAL_NODES, AVG_EDGES, and NUM_SEEDS
+inside webgraph_simulation.py to explore different country sizes and seed strategies.
